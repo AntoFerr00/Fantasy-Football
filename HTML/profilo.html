@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Profilo</title>
+  </head>
+  <body>
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+      <fieldset>
+        <legend>Modifica profilo</legend>
+        <p>
+          <label for="modNome">
+            Modifica nome utente: <input type="text" id="modNome" name="modNome"/>
+          </label>
+        </p>
+        <p>
+          <label for="modPwd">
+            Modifica Password: <input type="password" id="modPwd" name="modPwd"/>
+          </label>
+        </p>
+        <p>
+          <label for="modEmail">
+            Modifica Email: <input type="text" id="modEmail" name="modEmail"/>
+          </label>
+        </p>
+        <p>
+          <label for="modSquadra">
+            Modifica nome Squadra: <input type="text" id="modSquadra" name="modSquadra"/>
+          </label>
+        </p>
+        <p>
+          <label for="modLogo">
+            Cambia logo: <input type="file" id="logo" name="logo" accept="image/png, image/jpeg, image/jpg">
+          </label>
+        </p>
+      </fieldset>
+      <p>
+        <button>Salva modifiche</button>
+      </p>
+      <p>
+        <button>Elimina account</button>
+      </p>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Squadra e Formazione</title>
+  	<style>
+      nav
+      {
+      height: 200px; 
+      width: 100%; 
+      overflow: hidden; 
+      overflow-y: scroll;
+      }
+  
+      nav ul 
+      {
+      list-style: none;
+      margin:0;
+      padding:0;
+      display: table;
+      width: 100%;
+      }
+          
+      #menuLi
+      {
+      margin: 5px;
+      z-index:10;
+      text-align: center;
+      border: medium solid green;
+      background-color: green;
+      }
+      
+      #btt 
+      {
+      font: bold 12px Arial, Helvetica, sans-serif;
+      color: #fff;
+      padding: 10px 20px;
+      border: solid 1px green;
+      background: green;
+      }
+      
+      #btt:hover 
+      {
+      width: 100%;
+      }
+      
+      #btt:active
+      {
+      position: relative;
+      top: 1px;
+      }
+      
+      #schema, #seleziona
+      {
+      background: lightgrey;
+      text-align: center;
+      }
+      </style>
+      
+      <SCRIPT>
+      	function inserisci(){
+        	document.getElementById("bottoneInserisci").style.visibility = "hidden";
+			    document.getElementById("SelSquadra").style.visibility = "visible"; 
+          document.getElementById("squadre").style.visibility = "visible"; 
+        }
+        
+        function addPlayer(){
+          document.getElementById("squadraTxt").style.display = "none";
+          document.getElementById("giocatore1").style.display = "none";
+          
+          
+          var tdOld = document.getElementById("squadraTxt");
+          var tdNew = document.createElement("td");
+          var btn = document.createElement("button");
+          var table = document.createElement("table");                   
+          var tr = document.createElement("tr");
+          var td1 = document.createElement("td");
+          var td2 = document.createElement("td");
+          var td3 = document.createElement("td");
+
+          td1.innerHTML = "Bonucci";            
+          td2.innerHTML = "DIF";
+          btn.innerHTML = "Rimuovi";
+          btn.setAttribute("onclick", "removePlayer()");
+          td3.appendChild(btn);
+          
+
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+
+          tdNew.setAttribute("id", "tdNew");
+
+          table.appendChild(tr);
+          tdNew.appendChild(table);
+          document.getElementById("InsertTeam").replaceChild(tdNew, tdOld);            
+        }
+
+        function removePlayer(){
+          document.getElementById("tdNew").remove(); 
+          var td = document.createElement("td");
+          td.innerHTML = "Inserisci una squadra (max 20 giocatori)";
+          td.setAttribute("colspan", "4");
+          td.setAttribute("rowspan", "4");
+          td.setAttribute("text-align", "center");
+          td.setAttribute("id", "squadraTxt");
+          document.getElementById("InsertTeam").appendChild(td);        
+          
+          var gioc = document.getElementById("giocatore1");
+          gioc.style.display = "table-row";          
+        }
+    </SCRIPT>    
+  </head>
+  <body>
+    <table border="1">
+      <tr id="InsertTeam">
+        <td id="schema">Schema</td>
+        <td id="squadraTxt" rowspan="4" colspan="4" style="text-align: center;">Inserisci una squadra (max 20 giocatori)</td>
+      </tr>
+      <tr>
+        <td>
+          <div id="menuSchema">
+            <nav>
+              <ul>
+                <li id="menuLi"><button id="btt">4-4-2</button></li>
+                <li id="menuLi"><button id="btt">3-4-3</button></li>
+                <li id="menuLi"><button id="btt">3-4-1-2</button></li>
+                <li id="menuLi"><button id="btt">3-4-2-1</button></li>
+                <li id="menuLi"><button id="btt">3-5-2</button></li>
+                <li id="menuLi"><button id="btt">4-3-3</button></li>
+                <li id="menuLi"><button id="btt">4-3-1-2</button></li>
+                <li id="menuLi"><button id="btt">4-3-2-1</button></li>
+                <li id="menuLi"><button id="btt">4-2-3-1</button></li>
+                <li id="menuLi"><button id="btt">4-4-1-1</button></li>
+                <li id="menuLi"><button id="btt">4-2-2-2</button></li>
+              </ul>
+            </nav>
+          </div>
+        </td>
+      </tr>
+      
+      <tr id="SelSquadra" style="visibility: hidden;">
+      	<!-- Ricordiamoci di vedere come funziona con inserimento dati in db -->
+      	<td id="seleziona">
+        	Seleziona giocatore
+        </td>
+      </tr>
+      <tr id="squadre" style="visibility: hidden;">
+        <td>
+          <nav>
+            <ul>
+              <li>
+                <table>
+                  <th id="juve">Juventus</th>
+                  <tr id="giocatore1">
+                    <td>Bonucci</td>
+                    <td>DIF</td>
+                    <td><button onclick="addPlayer()">Aggiungi</button></td>
+                  </tr>
+                  <tr id="giocatore2">
+                    <td>De Ligt</td>
+                    <td>DIF</td>
+                    <td><button onclick="addPlayer()">Aggiungi</button></td>
+                  </tr>
+                </table>
+              </li>
+              <li>
+                <table>
+                  <th>Inter</th>
+                  <tr id="giocatore3">
+                    <td>Handanovic</td>
+                    <td>POR</td>
+                    <td><button id="btnAdd" onclick="addPlayer()">Aggiungi</button></td>
+                  </tr>
+                </table>
+              </li>
+            </ul>
+          </nav>
+        </td>
+      </tr>
+      
+      <tr>
+      	<td id="bottoneInserisci" rowspan="3"><button onclick="inserisci()">Inserisci nuova squadra</button></td>
+        <td><button id="salvaSquadra" disabled>Salva Squadra</button></td>
+        <td><button id="eliminaSquadra" disabled>Elimina Squadra</button></td>
+      </tr>
+    </table>
+  </body>
+</html>

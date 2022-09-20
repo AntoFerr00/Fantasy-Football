@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<?php  
+<html>
+<head>
+	<title> Login</title>
+  <script>
+    document.form.myForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var utente = myForm.utente.value;
+    var pwd = myForm.pwd.value;
+    if(utente == ""){
+      alert("Devi inserire il nome utente!");
+      utente.select();
+      return false;
+    }
+    if(pwd == ""){
+      alert("Devi inserire la password!");
+      pwd.select();
+      return false;
+    }
+    });
+  </script>
+</head>
+	<body>
+<form method="post" action="Fantacalcio.php">
+  <fieldset><legend>Account</legend>
+    <p><label for="utente"> Username <input id="utente"name ="utente"/></label></p>
+    <p><label for="pwd"> Password <input id="pwd"name ="pwd"/></label></p>
+  </fieldset>
+  <br/>
+  <button> Login </button>
+</form>
+<p><a href="https://protezionedatipersonali.it/informativa" target="_blank">Privacy Policy</a></p>
+<p>
+  Non sei registrato?
+  <button onclick="location.href='registrazione.php'">Registrati</button>
+</p>
+	</body>
+</html>

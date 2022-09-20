@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<?php session.start() ?>
+<html>
+  <head>
+    <title>Registrazione</title>
+    <script type="text/javascript">
+      document.forms.myForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var pwd = myForm.pwd.value;
+      var confPwd = myForm.confirm.value;
+      var email = myForm.email.value;
+      var confEmail = myForm.confEmail.value;
+      var squadra = myForm.nomeSquadra.value;
+      var nomeUtente = myForm.nomeUtente.value;
+      
+      if(email == ""){
+        alert("Devi inserire l'email!");
+        email.select();
+        return false;
+      }
+      if(pwd == ""){
+        alert("Devi inserire la password!");
+        pwd.select();
+        return false;
+      }
+      if(squadra == ""){
+        alert("Devi inserire un nome per la tua squadra!");
+        squadra.select();
+        return false;
+      }
+      if(nomeUtente == ""){
+        alert("Devi inserire un nome utente!");
+        nomeUtente.select();
+        return false;
+      }
+      if(email != confEmail){
+        alert("Le due email non coincidono. Riprova!");
+        email.focus();
+        confEmail.select();
+        return false;
+      }
+      if(pwd != confPwd){
+        alert("Le due password non coincidono. Riprova");
+        pwd.focus();
+        confPwd.select();
+        return false;
+      }
+      myForm.submit;
+    });
+    function verifica(nomeInput){
+      utente = nomeInput.value;
+      atPos = utente.indexOf("@", 0);
+      if(atPos > -1){
+        alert("Non puoi inserire la @!");
+        var a = new Array();
+        a = utente.split("@");
+        utente = a[0];
+        nomeInput.value = utente;
+      }
+    };
+    function avvisa(){
+      alert("Immagine caricata con successo!");
+    };
+    </script>
+  </head>
+  <body>
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+      <fieldset>
+        <legend>Registrazione Account</legend>
+        <p>
+        <label for="squadra">
+          Nome Squadra: <input type="text" id="squadra" name="squadra"/>
+        </label>
+      </p>
+        <p>
+          <label for="nomeUtente">
+            Nome Utente: <input type="text" id="nomeUtente" name="nomeUtente" onchange="verifica(this)"/>
+          </label>
+        </p>
+        <p>
+          <label for="email">
+            Email: <input type="text" id="email" name="email"/>                      
+          </label>
+        </p>
+        <p>
+          <label for="confEmail">
+            Conferma Email: <input type="text" id="confEmail" name="confEmail"/>
+          </label>
+        </p>
+        <p>
+          <label for="pwd">
+            Password: <input type="password" id="pwd" name="pwd"/>
+          </label>
+        </p>
+        <p>
+          <label for="confPwd">
+            Conferma Password: <input type="password" id="confPwd" name="confPwd"/>
+          </label>
+        </p>
+        <p><a href="https://protezionedatipersonali.it/informativa" target="_blank">Accetto il trattamento dei dati personali</a>
+            <input type="checkbox" required/>
+        </p>
+        <p>
+          <label for="logo" onload="avvisa()">
+            Scegli un logo: <input type="file" id="logo" name="logo" accept="image/png, image/jpeg, image/jpg">
+          </label>
+        </p>
+        <p>
+          <label for="submit">
+            <button type="submit">Registrati</button>
+          </label>
+          <label>
+            <button onclick="location.href='Home.php'">Torna indietro</button>
+          </label>
+        </p>
+      </fieldset>
+    </form>
+  </body>
+</html>
